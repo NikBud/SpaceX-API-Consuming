@@ -1,9 +1,9 @@
 package com.example.nbudeanski.spacex_api.DTO;
 
-import com.example.nbudeanski.spacex_api.model.*;
-import com.example.nbudeanski.spacex_api.model.engines.Engines;
-import com.example.nbudeanski.spacex_api.model.firstStage.FirstStage;
-import com.example.nbudeanski.spacex_api.model.secondStage.SecondStage;
+import com.example.nbudeanski.spacex_api.model.api.*;
+import com.example.nbudeanski.spacex_api.model.api.engines.Engines;
+import com.example.nbudeanski.spacex_api.model.api.firstStage.FirstStage;
+import com.example.nbudeanski.spacex_api.model.api.secondStage.SecondStage;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.Timestamp;

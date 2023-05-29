@@ -1,7 +1,7 @@
-package com.example.nbudeanski.spacex_api.model.secondStage;
+package com.example.nbudeanski.spacex_api.model.api.secondStage;
 
-import com.example.nbudeanski.spacex_api.model.Diameter;
-import com.example.nbudeanski.spacex_api.model.Height;
+import com.example.nbudeanski.spacex_api.model.api.Diameter;
+import com.example.nbudeanski.spacex_api.model.api.Height;
 
 public class CompositeFairing {
     private Height height;

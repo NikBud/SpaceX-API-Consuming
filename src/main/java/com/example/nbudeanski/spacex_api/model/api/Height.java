@@ -1,6 +1,6 @@
-package com.example.nbudeanski.spacex_api.model;
+package com.example.nbudeanski.spacex_api.model.api;
 
-public class Diameter {
+public class Height {
     private double meters;
     private double feet;
 

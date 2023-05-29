@@ -1,7 +1,7 @@
-package com.example.nbudeanski.spacex_api.model.engines;
+package com.example.nbudeanski.spacex_api.model.api.engines;
 
-import com.example.nbudeanski.spacex_api.model.ThrustVacuum;
-import com.example.nbudeanski.spacex_api.model.ThrustSeaLevel;
+import com.example.nbudeanski.spacex_api.model.api.ThrustVacuum;
+import com.example.nbudeanski.spacex_api.model.api.ThrustSeaLevel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Engines {

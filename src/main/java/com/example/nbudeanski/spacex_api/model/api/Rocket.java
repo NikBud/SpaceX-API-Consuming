@@ -1,9 +1,10 @@
-package com.example.nbudeanski.spacex_api.model;
+package com.example.nbudeanski.spacex_api.model.api;
 
-import com.example.nbudeanski.spacex_api.model.engines.Engines;
-import com.example.nbudeanski.spacex_api.model.firstStage.FirstStage;
-import com.example.nbudeanski.spacex_api.model.secondStage.SecondStage;
+import com.example.nbudeanski.spacex_api.model.api.engines.Engines;
+import com.example.nbudeanski.spacex_api.model.api.firstStage.FirstStage;
+import com.example.nbudeanski.spacex_api.model.api.secondStage.SecondStage;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Rocket {
 
     @JsonProperty("landing_legs")
     private LandingLegs landingLegs;
+
     @JsonProperty("payload_weights")
     private List<PayloadWeight> payloadWeights;
 
@@ -45,7 +47,8 @@ public class Rocket {
 
     private String wikipedia;
     private String description;
-    private String id;
+    @JsonProperty("id")
+    private String rocket_id;
 
     public Height getHeight() {
         return height;
@@ -215,18 +218,18 @@ public class Rocket {
         this.description = description;
     }
 
-    public String getId() {
-        return id;
+    public String getRocket_id() {
+        return rocket_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setRocket_id(String rocket_id) {
+        this.rocket_id = rocket_id;
     }
 
     @Override
     public String toString() {
         return "Rocket: " +
                 "name= " + name +
-                ", id= " + id ;
+                ", id= " + rocket_id ;
     }
 }

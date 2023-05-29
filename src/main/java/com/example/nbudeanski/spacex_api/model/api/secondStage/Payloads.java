@@ -1,4 +1,4 @@
-package com.example.nbudeanski.spacex_api.model.secondStage;
+package com.example.nbudeanski.spacex_api.model.api.secondStage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

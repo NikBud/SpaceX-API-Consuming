@@ -1,6 +1,6 @@
-package com.example.nbudeanski.spacex_api.model.secondStage;
+package com.example.nbudeanski.spacex_api.model.api;
 
-public class Thrust {
+public class ThrustVacuum {
     private int kN;
     private long lbf;
 

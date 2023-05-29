@@ -1,4 +1,4 @@
-package com.example.nbudeanski.spacex_api.model;
+package com.example.nbudeanski.spacex_api.model.api;
 
 public class LandingLegs {
     private int number;

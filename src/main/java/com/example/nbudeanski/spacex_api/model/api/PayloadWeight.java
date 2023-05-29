@@ -1,17 +1,22 @@
-package com.example.nbudeanski.spacex_api.model;
+package com.example.nbudeanski.spacex_api.model.api;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PayloadWeight {
-    private String id;
+
+    @JsonProperty("id")
+    private String PayloadWeightId;
     private String name;
     private int kg;
     private int lb;
 
-    public String getId() {
-        return id;
+
+    public String getPayloadWeightId() {
+        return PayloadWeightId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPayloadWeightId(String payloadWeightId) {
+        PayloadWeightId = payloadWeightId;
     }
 
     public String getName() {
