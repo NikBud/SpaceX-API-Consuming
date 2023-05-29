@@ -38,10 +38,10 @@ public class RocketEntity {
     @OneToOne(mappedBy = "rocket")
     private LandingLegsEntity landingLegs;
 
-    @OneToMany(mappedBy = "rocket")
+    @OneToMany(mappedBy = "rocket", cascade = CascadeType.PERSIST)
     private List<PayloadWeightEntity> payloadWeights;
 
-    @OneToMany(mappedBy = "rocket")
+    @OneToMany(mappedBy = "rocket", cascade = CascadeType.PERSIST)
     private List<FlickrImage> flickrImages;
 
     @Column(name = "name")

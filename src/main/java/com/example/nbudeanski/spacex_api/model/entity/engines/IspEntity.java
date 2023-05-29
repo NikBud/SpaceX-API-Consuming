@@ -18,7 +18,7 @@ public class IspEntity {
     @Column(name = "vacuum")
     private int vacuum;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "engines_id", referencedColumnName = "id")
     private EnginesEntity engines;
 

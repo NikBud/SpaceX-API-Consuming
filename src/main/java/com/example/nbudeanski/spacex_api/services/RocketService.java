@@ -10,6 +10,7 @@ import com.example.nbudeanski.spacex_api.model.entity.secondStage.PayloadsEntity
 import com.example.nbudeanski.spacex_api.model.entity.secondStage.SecondStageEntity;
 import com.example.nbudeanski.spacex_api.model.entity.secondStage.ThrustEntity;
 import com.example.nbudeanski.spacex_api.repository.RocketRepository;
+import jakarta.persistence.EntityManager;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,14 @@ public class RocketService {
 
     private final RocketRepository rocketRepository;
 
+    private final EntityManager entityManager;
+
     @Autowired
-    public RocketService(WebClient webClient, ModelMapper modelMapper, RocketRepository rocketRepository) {
+    public RocketService(WebClient webClient, ModelMapper modelMapper, RocketRepository rocketRepository, EntityManager entityManager) {
         this.webClient = webClient;
         this.modelMapper = modelMapper;
         this.rocketRepository = rocketRepository;
+        this.entityManager = entityManager;
     }
 
     public List<RocketDTO> retrieveAll() {
@@ -193,12 +197,32 @@ public class RocketService {
 
 
             RocketEntity r = modelMapper.map(rocket, RocketEntity.class);
-//            r.getFlickrImages().forEach(flickrImage -> flickrImage.setRocket(r));
-//            r.getPayloadWeights().forEach(payloadWeight -> payloadWeight.setRocket(r));
+            r.getFlickrImages().forEach(flickrImage -> flickrImage.setRocket(r));
+            r.getPayloadWeights().forEach(payloadWeight -> payloadWeight.setRocket(r));
 
-            rocketRepository.save(r);
+
+            entityManager.persist(r);
+            entityManager.persist(r.getHeight());
+            entityManager.persist(r.getDiameter());
+            entityManager.persist(r.getMass());
+            entityManager.persist(r.getFirstStage());
+            entityManager.persist(r.getFirstStage().getThrustSeaLevel());
+            entityManager.persist(r.getFirstStage().getThrustVacuum());
+            entityManager.persist(r.getSecondStage());
+            entityManager.persist(r.getSecondStage().getThrust());
+            entityManager.persist(r.getSecondStage().getPayloads());
+            entityManager.persist(r.getSecondStage().getPayloads().getCompositeFairing());
+            entityManager.persist(r.getEngines());
+            entityManager.persist(r.getEngines().getIsp());
+            entityManager.persist(r.getEngines().getThrustSeaLevel());
+            entityManager.persist(r.getEngines().getThrustVacuum());
+            entityManager.persist(r.getLandingLegs());
+
+            entityManager.flush();
+
             System.out.println("created!");
-            System.out.println(r);
+            System.out.println(r.getDiameter());
+            System.out.println(r.getDiameter().getRocket());
 
             return rocketRepository.findById(Long.valueOf(1)).get();
         }
