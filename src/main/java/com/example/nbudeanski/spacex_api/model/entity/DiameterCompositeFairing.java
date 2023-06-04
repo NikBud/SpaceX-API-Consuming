@@ -18,7 +18,7 @@ public class DiameterCompositeFairing {
     @Column(name = "feet")
     private double feet;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "composite_fairing_id", referencedColumnName = "id")
     private CompositeFairingEntity compositeFairing;
 

@@ -15,7 +15,7 @@ public class FlickrImage {
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "rocket_id", nullable = false)
+    @JoinColumn(name = "rocket_id")
     private RocketEntity rocket;
 
 
@@ -49,5 +49,10 @@ public class FlickrImage {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return url;
     }
 }

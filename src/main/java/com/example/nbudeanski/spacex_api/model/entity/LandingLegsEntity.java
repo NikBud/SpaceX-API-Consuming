@@ -18,7 +18,7 @@ public class LandingLegsEntity {
     @Column(name = "material")
     private String material;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "rocket_id", referencedColumnName = "id")
     private RocketEntity rocket;
 

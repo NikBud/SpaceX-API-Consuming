@@ -15,13 +15,13 @@ public class CompositeFairingEntity {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(mappedBy = "compositeFairing")
+    @OneToOne(mappedBy = "compositeFairing", cascade = CascadeType.ALL)
     private HeightCompositeFairing height;
 
-    @OneToOne(mappedBy = "compositeFairing")
+    @OneToOne(mappedBy = "compositeFairing", cascade = CascadeType.ALL)
     private DiameterCompositeFairing diameter;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "payload_id", referencedColumnName = "id")
     private PayloadsEntity payload;
 
@@ -56,6 +56,7 @@ public class CompositeFairingEntity {
 
     public void setHeight(HeightCompositeFairing height) {
         this.height = height;
+        height.setCompositeFairing(this);
     }
 
     public DiameterCompositeFairing getDiameter() {
@@ -64,6 +65,7 @@ public class CompositeFairingEntity {
 
     public void setDiameter(DiameterCompositeFairing diameter) {
         this.diameter = diameter;
+        diameter.setCompositeFairing(this);
     }
 
 

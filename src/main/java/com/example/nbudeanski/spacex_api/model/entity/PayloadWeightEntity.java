@@ -24,7 +24,7 @@ public class PayloadWeightEntity {
     private int lb;
 
     @ManyToOne
-    @JoinColumn(name = "rocket_id", nullable = false)
+    @JoinColumn(name = "rocket_id")
     private RocketEntity rocket;
 
     public PayloadWeightEntity() {

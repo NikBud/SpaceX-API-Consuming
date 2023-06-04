@@ -12,10 +12,10 @@ public class SecondStageEntity {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(mappedBy = "secondStage")
+    @OneToOne(mappedBy = "secondStage", cascade = CascadeType.ALL)
     private ThrustEntity thrust;
 
-    @OneToOne(mappedBy = "secondStage")
+    @OneToOne(mappedBy = "secondStage", cascade = CascadeType.ALL)
     private PayloadsEntity payloads;
 
     @Column(name = "reusable")
@@ -30,7 +30,7 @@ public class SecondStageEntity {
     @Column(name = "burn_time_sec")
     private int burnTimeSec;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "rocket_id", referencedColumnName = "id")
     private RocketEntity rocket;
 
@@ -58,6 +58,7 @@ public class SecondStageEntity {
 
     public void setThrust(ThrustEntity thrustEntity) {
         this.thrust = thrustEntity;
+        thrustEntity.setSecondStage(this);
     }
 
     public PayloadsEntity getPayloads() {
@@ -66,6 +67,7 @@ public class SecondStageEntity {
 
     public void setPayloads(PayloadsEntity payloadsEntity) {
         this.payloads = payloadsEntity;
+        payloadsEntity.setSecondStage(this);
     }
 
     public boolean isReusable() {

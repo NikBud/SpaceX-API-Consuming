@@ -17,7 +17,7 @@ public class MassEntity {
     @Column(name = "lb")
     private int lb;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "rocket_id", referencedColumnName = "id")
     private RocketEntity rocket;
 

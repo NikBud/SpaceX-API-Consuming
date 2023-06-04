@@ -17,7 +17,7 @@ public class DiameterRocket {
     @Column(name = "feet")
     private double feet;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "rocket_id", referencedColumnName = "id")
     private RocketEntity rocket;
 

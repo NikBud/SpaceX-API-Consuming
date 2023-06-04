@@ -11,13 +11,13 @@ public class PayloadsEntity {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(mappedBy = "payload")
+    @OneToOne(mappedBy = "payload", cascade = CascadeType.ALL)
     private CompositeFairingEntity compositeFairing;
 
     @Column(name = "option_1")
     private String option1;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "second_stage_id", referencedColumnName = "id")
     private SecondStageEntity secondStage;
 
@@ -44,6 +44,7 @@ public class PayloadsEntity {
 
     public void setCompositeFairing(CompositeFairingEntity compositeFairingEntity) {
         this.compositeFairing = compositeFairingEntity;
+        compositeFairingEntity.setPayloads(this);
     }
 
     public String getOption1() {

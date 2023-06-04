@@ -24,11 +24,11 @@ public class FirstStage {
         this.thrustSeaLevel = thrustSeaLevel;
     }
 
-    public ThrustVacuum getThrusVacuum() {
+    public ThrustVacuum getThrustVacuum() {
         return thrustVacuum;
     }
 
-    public void setThrusVacuum(ThrustVacuum thrustVacuum) {
+    public void setThrustVacuum(ThrustVacuum thrustVacuum) {
         this.thrustVacuum = thrustVacuum;
     }
 

@@ -17,7 +17,7 @@ public class ThrustEntity {
     @Column(name = "lbf")
     private long lbf;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "second_stage_id", referencedColumnName = "id")
     private SecondStageEntity secondStage;
 

@@ -17,25 +17,25 @@ public class RocketEntity {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(mappedBy = "rocket")
+    @OneToOne(mappedBy = "rocket", cascade = CascadeType.ALL)
     private HeightRocket height;
 
-    @OneToOne(mappedBy = "rocket")
+    @OneToOne(mappedBy = "rocket", cascade = CascadeType.ALL)
     private DiameterRocket diameter;
 
-    @OneToOne(mappedBy = "rocket")
+    @OneToOne(mappedBy = "rocket", cascade = CascadeType.ALL)
     private MassEntity mass;
 
-    @OneToOne(mappedBy = "rocket")
+    @OneToOne(mappedBy = "rocket", cascade = CascadeType.ALL)
     private FirstStageEntity firstStage;
 
-    @OneToOne(mappedBy = "rocket")
+    @OneToOne(mappedBy = "rocket", cascade = CascadeType.ALL)
     private SecondStageEntity secondStage;
 
-    @OneToOne(mappedBy = "rocket")
+    @OneToOne(mappedBy = "rocket", cascade = CascadeType.ALL)
     private EnginesEntity engines;
 
-    @OneToOne(mappedBy = "rocket")
+    @OneToOne(mappedBy = "rocket", cascade = CascadeType.ALL)
     private LandingLegsEntity landingLegs;
 
     @OneToMany(mappedBy = "rocket", cascade = CascadeType.PERSIST)
@@ -98,6 +98,7 @@ public class RocketEntity {
 
     public void setFlickrImages(List<FlickrImage> flickrImages) {
         this.flickrImages = flickrImages;
+        flickrImages.forEach(flickrImage -> flickrImage.setRocket(this));
     }
 
     public String getRocket_id() {
@@ -114,6 +115,7 @@ public class RocketEntity {
 
     public void setHeight(HeightRocket heightRocket) {
         this.height = heightRocket;
+        heightRocket.setRocket(this);
     }
 
     public DiameterRocket getDiameter() {
@@ -122,6 +124,7 @@ public class RocketEntity {
 
     public void setDiameter(DiameterRocket diameterRocket) {
         this.diameter = diameterRocket;
+        diameterRocket.setRocket(this);
     }
 
     public MassEntity getMass() {
@@ -130,6 +133,7 @@ public class RocketEntity {
 
     public void setMass(MassEntity massEntity) {
         this.mass = massEntity;
+        massEntity.setRocket(this);
     }
 
     public FirstStageEntity getFirstStage() {
@@ -138,6 +142,7 @@ public class RocketEntity {
 
     public void setFirstStage(FirstStageEntity firstStageEntity) {
         this.firstStage = firstStageEntity;
+        firstStageEntity.setRocket(this);
     }
 
     public SecondStageEntity getSecondStage() {
@@ -146,6 +151,7 @@ public class RocketEntity {
 
     public void setSecondStage(SecondStageEntity secondStageEntity) {
         this.secondStage = secondStageEntity;
+        secondStageEntity.setRocket(this);
     }
 
     public EnginesEntity getEngines() {
@@ -154,6 +160,7 @@ public class RocketEntity {
 
     public void setEngines(EnginesEntity engines) {
         this.engines = engines;
+        engines.setRocket(this);
     }
 
     public LandingLegsEntity getLandingLegs() {
@@ -162,6 +169,7 @@ public class RocketEntity {
 
     public void setLandingLegs(LandingLegsEntity landingLegsEntity) {
         this.landingLegs = landingLegsEntity;
+        landingLegsEntity.setRocket(this);
     }
 
     public List<PayloadWeightEntity> getPayloadWeights() {
@@ -170,7 +178,9 @@ public class RocketEntity {
 
     public void setPayloadWeights(List<PayloadWeightEntity> payloadWeightEntities) {
         this.payloadWeights = payloadWeightEntities;
+        payloadWeightEntities.forEach(payloadWeightEntity -> payloadWeightEntity.setRocket(this));
     }
+
 
     public String getName() {
         return name;
@@ -269,10 +279,10 @@ public class RocketEntity {
     }
 
 
-//    @Override
-//    public String toString() {
-//        return "Rocket: " +
-//                "name= " + name +
-//                ", id= " + id ;
-//    }
+    @Override
+    public String toString() {
+        return "Rocket: " +
+                "name= " + name +
+                ", id= " + id ;
+    }
 }

@@ -31,8 +31,8 @@ public class RocketController {
     }
 
     @GetMapping(value = "", params = "id")
-    public RocketEntity getEntity(@RequestParam("id") String id) {
-        return rocketService.retrieveOneToEntity(id);
+    public RocketDTO getEntity(@RequestParam("id") String id) {
+        return rocketService.retrieveOne(id);
     }
 
     @GetMapping(value = "", params = "name")
@@ -44,6 +44,5 @@ public class RocketController {
     public RocketDTO getOneByNameWithoutRequestParams(@PathVariable("name") String name) {
         return rocketService.retrieveOneByName(name);
     }
-
 
 }

@@ -12,13 +12,13 @@ public class EnginesEntity {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(mappedBy = "engines")
+    @OneToOne(mappedBy = "engines", cascade = CascadeType.ALL)
     private IspEntity isp;
 
-    @OneToOne(mappedBy = "engines")
+    @OneToOne(mappedBy = "engines", cascade = CascadeType.ALL)
     private ThrustSeaLevelEngines thrustSeaLevel;
 
-    @OneToOne(mappedBy = "engines")
+    @OneToOne(mappedBy = "engines", cascade = CascadeType.ALL)
     private ThrustVacuumEngines thrustVacuum;
 
     @Column(name = "number")
@@ -42,7 +42,7 @@ public class EnginesEntity {
     @Column(name = "thrust_to_weight")
     private double thrustToWeight;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "rocket_id", referencedColumnName = "id")
     private RocketEntity rocket;
 
@@ -70,6 +70,7 @@ public class EnginesEntity {
 
     public void setIsp(IspEntity ispEntity) {
         this.isp = ispEntity;
+        ispEntity.setEngines(this);
     }
 
     public ThrustSeaLevelEngines getThrustSeaLevel() {
@@ -78,6 +79,7 @@ public class EnginesEntity {
 
     public void setThrustSeaLevel(ThrustSeaLevelEngines thrustSeaLevel) {
         this.thrustSeaLevel = thrustSeaLevel;
+        thrustSeaLevel.setEngines(this);
     }
 
     public ThrustVacuumEngines getThrustVacuum() {
@@ -86,6 +88,7 @@ public class EnginesEntity {
 
     public void setThrustVacuum(ThrustVacuumEngines thrustVacuum) {
         this.thrustVacuum = thrustVacuum;
+        thrustVacuum.setEngines(this);
     }
 
     public int getNumber() {

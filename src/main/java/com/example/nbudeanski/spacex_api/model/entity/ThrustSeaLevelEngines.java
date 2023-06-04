@@ -18,7 +18,7 @@ public class ThrustSeaLevelEngines {
     @Column(name = "lbf")
     private long lbf;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "engines_id", referencedColumnName = "id")
     private EnginesEntity engines;
 

@@ -14,10 +14,10 @@ public class FirstStageEntity {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(mappedBy = "firstStage")
+    @OneToOne(mappedBy = "firstStage", cascade = CascadeType.ALL)
     private ThrustSeaLevelFirstStage thrustSeaLevel;
 
-    @OneToOne(mappedBy = "firstStage")
+    @OneToOne(mappedBy = "firstStage", cascade = CascadeType.ALL)
     private ThrustVacuumFirstStage thrustVacuum;
 
     @Column(name = "reusable")
@@ -32,7 +32,7 @@ public class FirstStageEntity {
     @Column(name = "burn_time_sec")
     private int burnTimeSec;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "rocket_id", referencedColumnName = "id")
     private RocketEntity rocket;
 
@@ -59,6 +59,7 @@ public class FirstStageEntity {
 
     public void setThrustSeaLevel(ThrustSeaLevelFirstStage thrustSeaLevelFirstStage) {
         this.thrustSeaLevel = thrustSeaLevelFirstStage;
+        thrustSeaLevelFirstStage.setFirstStage(this);
     }
 
     public ThrustVacuumFirstStage getThrustVacuum() {
@@ -67,6 +68,7 @@ public class FirstStageEntity {
 
     public void setThrustVacuum(ThrustVacuumFirstStage thrustVacuumFirstStage) {
         this.thrustVacuum = thrustVacuumFirstStage;
+        thrustVacuumFirstStage.setFirstStage(this);
     }
 
     public boolean isReusable() {

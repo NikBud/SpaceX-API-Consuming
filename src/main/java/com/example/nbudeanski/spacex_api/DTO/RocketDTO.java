@@ -7,6 +7,7 @@ import com.example.nbudeanski.spacex_api.model.api.secondStage.SecondStage;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 
 public class RocketDTO {
@@ -39,7 +40,7 @@ public class RocketDTO {
     @JsonProperty("success_rate_pct")
     private Integer successRatePTS;
     @JsonProperty("first_flight")
-    private Timestamp firstFlight;
+    private LocalDate firstFlight;
     private String company;
     private String country;
 
@@ -175,11 +176,11 @@ public class RocketDTO {
         this.successRatePTS = successRatePTS;
     }
 
-    public Timestamp getFirstFlight() {
+    public LocalDate getFirstFlight() {
         return firstFlight;
     }
 
-    public void setFirstFlight(Timestamp firstFlight) {
+    public void setFirstFlight(LocalDate firstFlight) {
         this.firstFlight = firstFlight;
     }
 
