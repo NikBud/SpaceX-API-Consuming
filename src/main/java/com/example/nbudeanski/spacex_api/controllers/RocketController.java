@@ -1,11 +1,9 @@
 package com.example.nbudeanski.spacex_api.controllers;
 
 import com.example.nbudeanski.spacex_api.DTO.RocketDTO;
-import com.example.nbudeanski.spacex_api.model.entity.RocketEntity;
 import com.example.nbudeanski.spacex_api.services.RocketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -20,9 +18,44 @@ public class RocketController {
         this.rocketService = rocketService;
     }
 
-    @GetMapping("")
-    public List<RocketDTO> getAll() {
+    @GetMapping
+    public List<RocketDTO> getAll(
+            @RequestParam(required = false) Double minHeight,
+            @RequestParam(required = false) Double maxHeight,
+            @RequestParam(required = false) Double minDiameter,
+            @RequestParam(required = false) Double maxDiameter,
+            @RequestParam(required = false) Long minCostPerLaunch,
+            @RequestParam(required = false) Long maxCostPerLaunch,
+            @RequestParam(required = false) Integer minMass,
+            @RequestParam(required = false) Integer maxMass,
+            @RequestParam(required = false) String minFirstFlightDate,
+            @RequestParam(required = false) String maxFirstFlightDate
+    )
+    {
+        if ((minHeight != null && maxHeight != null) || (minDiameter != null && maxDiameter != null) ||
+                (minCostPerLaunch != null && maxCostPerLaunch != null) || (minMass != null && maxMass != null) ||
+                    (minFirstFlightDate != null && maxFirstFlightDate != null))
+        {
+            return rocketService.retrieveWithDoubleFilterCondition(minHeight,maxHeight, minDiameter, maxDiameter, minCostPerLaunch, maxCostPerLaunch, minMass, maxMass, minFirstFlightDate, maxFirstFlightDate);
+        }
+
+        if (minHeight != null || maxHeight != null || minDiameter != null || maxDiameter != null ||
+                minCostPerLaunch != null || maxCostPerLaunch != null || minMass != null || maxMass != null ||
+                minFirstFlightDate != null || maxFirstFlightDate != null)
+        {
+            return rocketService.retrieveWithSingleFilterCondition(minHeight,maxHeight, minDiameter, maxDiameter, minCostPerLaunch, maxCostPerLaunch, minMass, maxMass, minFirstFlightDate, maxFirstFlightDate);
+        }
+
         return rocketService.retrieveAll();
+    }
+
+
+    @GetMapping(value = "", params = "sortBy")
+    public List<RocketDTO> getAllSorted(
+            @RequestParam("sortBy") String sortingCondition,
+            @RequestParam(value = "order", required = false) String order
+    ){
+        return rocketService.retrieveAllBySortCondition(sortingCondition, order);
     }
 
     @GetMapping("/{id}")

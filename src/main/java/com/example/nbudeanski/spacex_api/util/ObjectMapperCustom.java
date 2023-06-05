@@ -50,6 +50,12 @@ public class ObjectMapperCustom {
         return modelMapper.map(rocketEntity, RocketDTO.class);
     }
 
+    public List<RocketDTO> convertListOfEntitiesToDTO(List<RocketEntity> entities){
+        return entities.stream()
+                .map(this::convertEntityToDTO)
+                .collect(Collectors.toList());
+    }
+
     private void modelMapperSetupEntityToDTO() {
 
         Converter<ThrustVacuumFirstStage, ThrustVacuum> thrustVacuumFirstStageThrustVacuumConverter = context -> {
