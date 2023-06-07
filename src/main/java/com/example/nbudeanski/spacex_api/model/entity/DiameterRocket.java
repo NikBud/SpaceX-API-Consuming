@@ -2,9 +2,11 @@ package com.example.nbudeanski.spacex_api.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "diameter_rocket")
-public class DiameterRocket {
+public class DiameterRocket implements Comparable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,4 +55,9 @@ public class DiameterRocket {
         this.feet = feet;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        DiameterRocket diameter = (DiameterRocket) o;
+        return Double.compare(this.meters, diameter.meters);
+    }
 }

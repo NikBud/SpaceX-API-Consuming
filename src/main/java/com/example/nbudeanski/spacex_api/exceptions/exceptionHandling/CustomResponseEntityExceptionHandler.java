@@ -1,5 +1,8 @@
 package com.example.nbudeanski.spacex_api.exceptions.exceptionHandling;
 
+import com.example.nbudeanski.spacex_api.exceptions.InvalidFilterSearchException;
+import com.example.nbudeanski.spacex_api.exceptions.InvalidSortingConditionException;
+import com.example.nbudeanski.spacex_api.exceptions.InvalidSortingOrderException;
 import com.example.nbudeanski.spacex_api.exceptions.NoSuchRocketException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +24,20 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
-//    @ExceptionHandler(Exception.class)
-//    public final ResponseEntity<ErrorDetails> handleAllExceptions(Exception ex, WebRequest request) {
-//        ErrorDetails errorDetails = new ErrorDetails(LocalDate.now(),
-//                ex.getMessage(), request.getDescription(false));
-//
-//        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
+    @ExceptionHandler({InvalidFilterSearchException.class, InvalidSortingConditionException.class, InvalidSortingOrderException.class})
+    public final ResponseEntity<ErrorDetails> handleInvalidFilterAndSortConditions(Exception ex, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(LocalDate.now(),
+                ex.getMessage(), request.getDescription(false));
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<ErrorDetails> handleAllExceptions(Exception ex, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(LocalDate.now(),
+                ex.getMessage(), request.getDescription(false));
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }

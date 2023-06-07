@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class RocketDTO {
     private Height height;
@@ -222,5 +223,24 @@ public class RocketDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "RocketDTO{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RocketDTO rocketDTO)) return false;
+        return Objects.equals(id, rocketDTO.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

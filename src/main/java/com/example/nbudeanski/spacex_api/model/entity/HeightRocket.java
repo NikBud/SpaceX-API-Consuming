@@ -2,9 +2,12 @@ package com.example.nbudeanski.spacex_api.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Comparator;
+import java.util.Objects;
+
 @Entity
 @Table(name = "height_rocket")
-public class HeightRocket {
+public class HeightRocket implements Comparable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,4 +56,21 @@ public class HeightRocket {
         this.feet = feet;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HeightRocket that)) return false;
+        return Double.compare(that.meters, meters) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(meters);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        HeightRocket height = (HeightRocket) o;
+        return Double.compare(this.meters, height.meters);
+    }
 }

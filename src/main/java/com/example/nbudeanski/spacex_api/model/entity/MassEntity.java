@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "mass")
-public class MassEntity {
+public class MassEntity implements Comparable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,5 +51,11 @@ public class MassEntity {
 
     public void setLb(int lb) {
         this.lb = lb;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        MassEntity mass = (MassEntity) o;
+        return Integer.compare(this.kg, mass.kg);
     }
 }
